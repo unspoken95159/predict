@@ -10,7 +10,7 @@
     },
     {
       "path": "/api/cron/generate-game-intelligence",
-      "schedule": "0 */2 * * 0,1,4,6"
+      "schedule": "0 14 * * 0,1,4,6"
     },
     {
       "path": "/api/cron/weekly-analyst-report",
