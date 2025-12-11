@@ -93,6 +93,9 @@ export default function PredictionCard({ prediction, showAnalysis = true }: Pred
 
             {/* 1. Matchup Column */}
             <div>
+                <div className="text-[10px] text-gray-500 mb-1">
+                    {new Date(prediction.gameTime).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}
+                </div>
                 <div className="flex items-center gap-1.5 mb-0.5">
                     {prediction.awayTeamLogo && <img src={prediction.awayTeamLogo} alt="" className="w-4 h-4" />}
                     <span className="text-gray-900 font-semibold">{prediction.awayTeam}</span>
