@@ -276,6 +276,58 @@ export async function batchWrite(writes: Array<{
 }
 
 /**
+ * Get single document by ID
+ */
+export async function getDocument(collection: string, documentId: string): Promise<any | null> {
+  return new Promise((resolve) => {
+    const path = `/v1/projects/${PROJECT_ID}/databases/(default)/documents/${collection}/${documentId}?key=${API_KEY}`;
+
+    const options = {
+      hostname: 'firestore.googleapis.com',
+      port: 443,
+      path,
+      method: 'GET',
+    };
+
+    const req = https.request(options, (res) => {
+      let responseData = '';
+
+      res.on('data', (chunk) => {
+        responseData += chunk;
+      });
+
+      res.on('end', () => {
+        if (res.statusCode === 200) {
+          try {
+            const result = JSON.parse(responseData);
+            if (result.fields) {
+              resolve(fromFirestoreDocument(result.fields));
+            } else {
+              resolve(null);
+            }
+          } catch (e) {
+            console.error('Error parsing document:', e);
+            resolve(null);
+          }
+        } else if (res.statusCode === 404) {
+          resolve(null);
+        } else {
+          console.error(`Firebase fetch failed (${res.statusCode}): ${responseData}`);
+          resolve(null); // Return null on error instead of throwing for robustness
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error('Firebase request error:', error);
+      resolve(null);
+    });
+
+    req.end();
+  });
+}
+
+/**
  * Query documents from Firestore with filters
  */
 export async function getDocuments(
