@@ -13,7 +13,8 @@ export class NFLAPI {
       const params: any = {};
 
       if (seasonYear && week) {
-        params.dates = seasonYear;
+        // ESPN API uses seasontype=2 for regular season and week parameter
+        params.seasontype = 2; // Regular season
         params.week = week;
       }
 
