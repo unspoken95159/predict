@@ -24,9 +24,22 @@ export class OddsAPI {
    * Get current NFL odds from multiple sportsbooks
    */
   static async getNFLOdds(regions: string = 'us', markets: string = 'h2h,spreads,totals') {
-    // Call The Odds API directly (works server-side and client-side)
+    return this.getOdds('americanfootball_nfl', regions, markets);
+  }
+
+  /**
+   * Get current NHL odds from multiple sportsbooks
+   */
+  static async getNHLOdds(regions: string = 'us', markets: string = 'h2h,spreads,totals') {
+    return this.getOdds('icehockey_nhl', regions, markets);
+  }
+
+  /**
+   * Generic odds fetcher
+   */
+  private static async getOdds(sport: string, regions: string, markets: string) {
     try {
-      const response = await axios.get(`${ODDS_API_BASE}/sports/americanfootball_nfl/odds`, {
+      const response = await axios.get(`${ODDS_API_BASE}/sports/${sport}/odds`, {
         params: {
           apiKey: API_KEY,
           regions,

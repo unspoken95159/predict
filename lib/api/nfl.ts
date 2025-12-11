@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Game, NFLTeam, TeamStats } from '@/types';
+import { Game, Team, TeamStats } from '@/types';
 
 const ESPN_API_BASE = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl';
 

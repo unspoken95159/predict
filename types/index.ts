@@ -1,10 +1,10 @@
-// NFL Game Data Types
-export interface NFLTeam {
+// Game Data Types
+export interface Team {
   id: string;
   name: string;
   abbreviation: string;
   logo?: string;
-  conference: 'AFC' | 'NFC';
+  conference: string; // 'AFC', 'NFC', 'Eastern', 'Western', etc.
   division: string;
 }
 
@@ -28,8 +28,8 @@ export interface Game {
   id: string;
   season: number;
   week: number;
-  homeTeam: NFLTeam;
-  awayTeam: NFLTeam;
+  homeTeam: Team;
+  awayTeam: Team;
   gameTime: Date;
   venue: string;
   homeScore?: number;

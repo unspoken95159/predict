@@ -220,11 +220,16 @@ export class MatrixPredictor {
    * Calculate confidence based on TSR differential
    */
   private static calculateConfidence(homeTSR: number, awayTSR: number): number {
-    const tsrDiff = Math.abs(homeTSR - awayTSR);
-    // Larger TSR difference = higher confidence
-    // Base confidence of 50%, add 5% per point of TSR difference
-    const confidence = 50 + (tsrDiff * 5);
-    return Math.round(Math.max(40, Math.min(95, confidence)));
+    // Convert TSR difference directly to estimated spread (TSR * 0.20 from predictGame)
+    const predictedSpread = tsrDiff * 0.20;
+
+    // NFL Win Probability Approximation:
+    // Base 50% + ~2.5% per point of spread
+    // Example: 3 point favorite -> 50 + 7.5 = 57.5% (approx vs actual ~59%)
+    // Example: 7 point favorite -> 50 + 17.5 = 67.5% (approx vs actual ~70%)
+    const confidence = 50 + (predictedSpread * 2.5);
+
+    return Math.round(Math.max(50, Math.min(95, confidence)));
   }
 
   /**
