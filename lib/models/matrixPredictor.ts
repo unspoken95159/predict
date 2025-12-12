@@ -221,6 +221,7 @@ export class MatrixPredictor {
    */
   private static calculateConfidence(homeTSR: number, awayTSR: number): number {
     // Convert TSR difference directly to estimated spread (TSR * 0.20 from predictGame)
+    const tsrDiff = homeTSR - awayTSR;
     const predictedSpread = tsrDiff * 0.20;
 
     // NFL Win Probability Approximation:

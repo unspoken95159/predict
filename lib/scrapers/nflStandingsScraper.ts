@@ -67,7 +67,7 @@ export class NFLStandingsScraper {
               teamName = teamLink ? (teamLink.getAttribute('aria-label') || teamLink.textContent.trim()) : cells[0].textContent.trim();
             }
             // Remove playoff indicators, extra whitespace, newlines
-            teamName = teamName.replace(/[xyz*]/gi, '').replace(/\\s+/g, ' ').replace(/\\n/g, '').trim();
+            teamName = teamName.replace(/[*]/g, '').replace(/\\s+/g, ' ').replace(/\\n/g, '').trim();
 
             // NFL.com column order: Team | W | L | T | PCT | PF | PA | Net Pts | Home | Road | Div | Pct | Conf | Pct | Non-Conf | Strk | Last 5
             const homeRec = parseRec(cells[8] ? cells[8].textContent : '0-0');

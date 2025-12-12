@@ -63,6 +63,9 @@ async function main() {
 
   } catch (error) {
     console.error('\n❌ ERROR:', error);
+    if (error instanceof Error) {
+      console.error(error.stack);
+    }
     process.exit(1);
   }
 }
