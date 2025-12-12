@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
 import { StandingsCacheService } from '@/lib/firebase/standingsCache';
 
 export async function GET(request: Request) {

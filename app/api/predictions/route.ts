@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+
 import { MatrixHelper } from '@/lib/models/matrixHelper';
 import { Game } from '@/types';
 

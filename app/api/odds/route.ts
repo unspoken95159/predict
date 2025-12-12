@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+
 import axios from 'axios';
 
 const ODDS_API_BASE = 'https://api.the-odds-api.com/v4';

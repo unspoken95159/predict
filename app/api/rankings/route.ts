@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+
 import * as fs from 'fs';
 import * as path from 'path';
 import { db } from '@/lib/firebase/config';
